@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Do not use @2 in production, use a complete version like x.x.x, see website for latest version:
+      https://community.algolia.com/instantsearch.js/v2/getting-started.html
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch-theme-algolia.min.css">
+    <style>
+    body { font-family: helvetica, arial, sans-serif; }
+
+    em { background: cyan; font-style: normal }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .twoColumns {
+      display: grid;
+      grid-template-columns: 20% 75%;
+      grid-gap: 5%
+    }
+    .ais-hits {
+      display: grid;
+      grid-template-columns: 47.5% 47.5%;
+      grid-gap: 5%;
+    }
+    .ais-hits--item {
+      background: #efefef;
+      margin-bottom: .5em;
+      padding: 1em;
+      min-height: 100px;
+    }
+    #searchBox {
+      margin-bottom: 2em;
+    }
+    #pagination {
+      margin: 0 auto;
+      text-align:center;
+    }
+    </style>
+    <meta charset="utf-8">
+    <title>Business.com</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Business.com</h1>
+
+      <h2>
+        Products
+      </h2>
+      <div id="searchBox"></div>
+      <div class="twoColumns">
+        <div id="brand"></div>
+        <div id="products"></div>
+      </div>
+      <div id="pagination"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearchmin.js"></script>
+    <script>
+      const search = instantsearch({
+        appId: '6be0576ff61c053d5f9a3225e2a90f76',
+        apiKey: 'latency',
+        indexName: 'instant_search',
+        searchParameters: {
+          hitsPerPage: 8,
+        },
+      });
+
+      search.addWidget(
+        instantsearch.widgets.hits({
+          container: document.querySelector('#products'),
+          templates: {
+            item: '{{name}}',
+          },
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.searchBox({
+          container: document.querySelector('#searchBox'),
+          placeholder: 'Search for products',
+          autofocus: false /* Only to avoid live preview taking focus */,
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.refinementList({
+          container: document.querySelector('.brand'),
+          attributeName: 'brand',
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.pagination({
+          container: document.querySelector('#pagination'),
+        })
+      );
+    </script>
+  </body>
+</html>
