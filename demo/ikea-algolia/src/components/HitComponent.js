@@ -10,11 +10,11 @@ function Hit(props) {
         <Card>
             <Image src={hit.image} />
             <Card.Content>
-                <Card.Header>${hit.name}</Card.Header>
+                <Card.Header>${hit.price}</Card.Header>
             </Card.Content>
             <Card.Content extra>
-                <Icon name='user' />
-                {hit.price}
+                {/* <Icon name='user' /> */}
+                {hit.name}
             </Card.Content>
         </Card>
     )
