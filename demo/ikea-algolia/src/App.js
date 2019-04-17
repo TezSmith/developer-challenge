@@ -24,7 +24,7 @@ class App extends Component {
             <div className="sidebar">
               <ClearRefinements clearsQuery="true" />
               <h2>Genres</h2>
-              <RefinementList attribute="genre" />
+              <RefinementList attribute="category" />
               <h2>Price</h2>
               {/*<NumericMenu
                 attribute="price"
@@ -37,7 +37,7 @@ class App extends Component {
             </div>
             <div className="main">
               <SearchBox
-                translations={{ placeholder: "Search for books by author, title or genre" }}
+                translations={{ placeholder: "Search for your next home item..." }}
               />
               <Hits hitComponent={Hit} />
               <Pagination
@@ -78,11 +78,11 @@ function Hit(props) {
     <Card>
       <Image src={hit.image} />
       <Card.Content>
-        <Card.Header>${hit.price}</Card.Header>
+        <Card.Header>${hit.name}</Card.Header>
       </Card.Content>
       <Card.Content extra>
         <Icon name='user' />
-        {hit.author}
+        {hit.price}
       </Card.Content>
     </Card>
   )
