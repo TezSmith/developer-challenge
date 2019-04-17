@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Card, Icon, Image } from 'semantic-ui-react'
 import algoliasearch from 'algoliasearch/lite';
-import { InstantSearch, SearchBox, Hits, RefinementList, NumericMenu, Pagination, ClearRefinements } from 'react-instantsearch-dom';
-import PropTypes from 'prop-types';
+import { InstantSearch, SearchBox, Hits, RefinementList, NumericMenu, RatingMenu, Pagination, ClearRefinements } from 'react-instantsearch-dom';
+import Hit from '../src/components/HitComponent'
 
 const ALG_APP = process.env.REACT_APP_ALG_APP
 const SEARCH_KEY = process.env.REACT_APP_SEARCH_KEY
@@ -23,21 +22,25 @@ class App extends Component {
           <InstantSearch searchClient={searchClient} indexName="demo_ikea">
             <div className="sidebar">
               <ClearRefinements clearsQuery="true" />
-              <h2>Genres</h2>
+              <h2>Product Categories</h2>
               <RefinementList attribute="category" />
               <h2>Price</h2>
-              {/*<NumericMenu
+              <NumericMenu
                 attribute="price"
                 items={[
-                  { label: ' $5 - $10', start: 5, end: 10 },
-                  { label: ' $10 - $20', start: 10, end: 20 },
-                  { label: ' $20 or more', start: 20 },
+                  { label: ' Less than $50', start: 0, end: 50 },
+                  { label: ' $50 - $150', start: 50, end: 150 },
+                  { label: ' $150 - $350', start: 150, end: 350 },
+                  { label: ' $350 - $500', start: 309, end: 500 },
+                  { label: ' $500 - $1000', start: 500, end: 1000 }
                 ]}
-              />*/}
+              />
+              <h2>Rating</h2>
+              <RatingMenu attribute="rating" />
             </div>
             <div className="main">
               <SearchBox
-                translations={{ placeholder: "Search for your next home item..." }}
+                translations={{ placeholder: "Search for your next home item by name or type..." }}
               />
               <Hits hitComponent={Hit} />
               <Pagination
@@ -70,27 +73,7 @@ class App extends Component {
   }
 }
 
-function Hit(props) {
 
-  const { hit } = props
-
-  return (
-    <Card>
-      <Image src={hit.image} />
-      <Card.Content>
-        <Card.Header>${hit.name}</Card.Header>
-      </Card.Content>
-      <Card.Content extra>
-        <Icon name='user' />
-        {hit.price}
-      </Card.Content>
-    </Card>
-  )
-}
-
-Hit.propTypes = {
-  hit: PropTypes.object.isRequired
-}
 
 export default App;
 

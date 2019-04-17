@@ -48,6 +48,11 @@ li {
   padding: 0px 4px 0px 4px;
 }
 
+.ais-RatingMenu-count, .ais-RatingMenu-label {
+  position: relative;
+  bottom: 5px;
+}
+
 button {
   height: 50px;
   color: #1E70BF;
