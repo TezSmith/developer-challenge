@@ -13,7 +13,6 @@ function Hit(props) {
                 <Card.Header>${hit.price}</Card.Header>
             </Card.Content>
             <Card.Content extra>
-                {/* <Icon name='user' /> */}
                 {hit.name}
             </Card.Content>
         </Card>
